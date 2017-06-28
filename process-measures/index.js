@@ -44,7 +44,7 @@ function sendAvgTempMessage(calcAvgTemp) {
 exports.processMeasures = function processMeasures (event, callback) {
   console.log(event.data)
 
-  sendMessage('sup!')
+  sendMessage(event.data)
 
   callback();
 }
