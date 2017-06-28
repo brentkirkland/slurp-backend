@@ -35,6 +35,7 @@ build/Release
 # Dependency directories
 node_modules/
 post-measures/node_modules/
+pub-endpoint/node_modules/
 jspm_packages/
 
 # Typescript v1 declaration files
@@ -59,4 +60,4 @@ typings/
 .env
 
 # customer secrets
-post-measures/ignores.js
+process-measures/ignores.js

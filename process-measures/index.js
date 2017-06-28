@@ -1,4 +1,4 @@
-// gcloud beta functions deploy postMeasures --stage-bucket slurpme --trigger-topic slurpBoxMeasures
+// gcloud beta functions deploy processMeasures --stage-bucket slurpme --trigger-topic processMeasures
 const Datastore = require('@google-cloud/datastore');
 const PubSub = require('@google-cloud/pubsub');
 const twilio = require('twilio');
@@ -28,8 +28,20 @@ function sendMessage (body) {
   .then((message) => console.log(message));
 }
 
+function sendAvgTempMessage(calcAvgTemp) {
+  if (calcAvgTemp < 70) {
+    sendMessage('room temp: ' + calcAvgTemp.toString() + ' 🤤');
+  } else if (calcAvgTemp > 70 && calcAvgTemp < 80) {
+    sendMessage('room temp: ' + calcAvgTemp.toString() + ' 😎');
+  } else if (calcAvgTemp > 80 && calcAvgTemp < 90) {
+    sendMessage('room temp: ' + calcAvgTemp.toString() + ' 😳');
+  } else {
+    sendMessage('room temp: ' + calcAvgTemp.toString() + ' 😡');
+  }
+}
 
-exports.postMeasures = function postMeasures (event, callback) {
+
+exports.processMeasures = function processMeasures (event, callback) {
   console.log(event.data)
 
   sendMessage('sup!')

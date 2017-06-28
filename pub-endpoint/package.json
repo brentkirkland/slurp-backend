@@ -1,0 +1,11 @@
+{
+  "name": "pub-endpoint",
+  "version": "0.1.0",
+  "description": "endpoint to create pubs (fix for raspberry pi issue)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brent Kirkland",
+  "license": "ISC"
+}
