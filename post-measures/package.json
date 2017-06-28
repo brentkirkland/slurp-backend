@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@google-cloud/datastore": "^1.0.2",
-    "@google-cloud/pubsub": "^0.13.0"
+    "@google-cloud/pubsub": "^0.13.0",
+    "twilio": "^3.4.0"
   }
 }
