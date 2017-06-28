@@ -24,6 +24,9 @@ function publishMessage (topicName, data) {
 
 exports.pubEndpoint = function pubEndpoint (req, res) {
 
+  // look for external ip!
+  console.log('req', req)
+
   let topic = req.query.topic || undefined;
   let data = req.body || undefined;
 
