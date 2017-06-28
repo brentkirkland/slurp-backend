@@ -41,11 +41,82 @@ exports.processMeasures = function processMeasures(event, callback) {
       sendMessage('room temp: ' + calcAvgTemp.toString() + ' 😡');
     }
   }
-  // need to get event id
-  console.log(event);
+
+  var eventId = event.eventId
+
   var data = JSON.parse(Buffer.from(event.data.data, 'base64').toString())
   if (data.shouldText) {
     sendAvgTempMessage(data.avgTemp)
   }
+
+  // handle room data
+  //TODO: make everything camel case
+
+  var kind = 'room_measure'
+  var name = eventId
+  var taskKey = datastore.key([kind, name]);
+
+  var task = {
+    key: taskKey,
+    data: {
+      room_id: data.room_id,
+      room_nickname: data.room_nickname,
+      timestamp: data.timestamp,
+      avg_temp: data.avgTemp,
+      ip: data.ip
+    }
+  };
+
+  console.log('ready to to write room info')
+
+  datastore.save(task)
+    .then(() => {
+      console.log(`Saved ${task.key.name}`);
+    });
+
+  kind = 'device_measure'
+  data.readings.map(function(reading, index) {
+
+    name = eventId + reading.major;
+    taskKey = datastore.key([kind, name]);
+    task = {
+      key: taskKey,
+      data: {
+        major: reading.major,
+        minor: reading.minor,
+        celcius: reading.celcius,
+        fahrenheit: reading.fahrenheit,
+        moisture: reading.moisture,
+        lastWatered: reading.lastWatered,
+        watered: reading.watered,
+        timestamp: data.timestamp,
+        room_id: data.room_id,
+        device_nickname: reading.device_nickname
+      }
+    };
+
+    console.log('ready to to write device info')
+
+    datastore.save(task)
+    .then(() => {
+      console.log(`Saved ${task.key.name}`);
+      });
+
+    // if (watered) {
+    //   // need to update last_watered
+    // }
+
+    // if lastWatered was an hour ago
+    // and if the plant did not reach its max
+    // increase watering time by x minutes
+
+    // water-length || device_id || min || max || last_watered
+
+  })
+
+
+
+
+
   callback();
 }

@@ -26,9 +26,14 @@ exports.pubEndpoint = function pubEndpoint (req, res) {
 
   // look for external ip!
   console.log('req', req)
+  var ip = req.headers['x-forwarded-for'] ||
+     req.connection.remoteAddress ||
+     req.socket.remoteAddress ||
+     req.connection.socket.remoteAddress;
+  console.log(ip)
 
   let topic = req.query.topic || undefined;
-  let data = req.body || undefined;
+  var data = req.body || undefined;
 
   res.setHeader('Access-Control-Allow-Origin', '*')
 
@@ -36,6 +41,7 @@ exports.pubEndpoint = function pubEndpoint (req, res) {
   if (topic === undefined || data === undefined) {
     res.send('bad')
   } else {
+    data.ip = ip;
     publishMessage(topic, data)
     res.send('ok')
   }
