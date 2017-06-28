@@ -25,7 +25,7 @@ function publishMessage (topicName, data) {
 exports.pubEndpoint = function pubEndpoint (req, res) {
 
   let topic = req.query.topic || undefined;
-  let data = req.body || undefined;
+  let data = req.body.payload || undefined;
 
   res.setHeader('Access-Control-Allow-Origin', '*')
 
@@ -33,9 +33,7 @@ exports.pubEndpoint = function pubEndpoint (req, res) {
   if (topic === undefined || data === undefined) {
     res.send('bad')
   } else {
-
     publishMessage(topic, data)
-
     res.send('ok')
   }
 
