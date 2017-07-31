@@ -1,4 +1,4 @@
-// gcloud beta functions deploy processMeasures --stage-bucket slurpme --trigger-topic processScans
+// gcloud beta functions deploy processScans --stage-bucket slurpme --trigger-topic processScans
 const Datastore = require('@google-cloud/datastore');
 const twilio = require('twilio');
 const projectId = 'slurp-165217';
@@ -77,7 +77,7 @@ exports.processScans = function processMeasures(event, callback) {
   kind = 'device_scan'
   data.readings.map(function(reading, index) {
 
-    name = eventId + reading.major;
+    name = eventId + reading.mac;
     taskKey = datastore.key([kind, name]);
     task = {
       key: taskKey,
@@ -86,6 +86,8 @@ exports.processScans = function processMeasures(event, callback) {
         moisture: reading.moisture,
         light: reading.light,
         conductivity: reading.conductivity,
+        battery: reading.battery,
+        fw: reading.fw,
         timestamp: data.timestamp,
         room_id: data.room_id,
       }
