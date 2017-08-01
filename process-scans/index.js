@@ -46,7 +46,9 @@ exports.processScans = function processMeasures(event, callback) {
 
   var data = JSON.parse(Buffer.from(event.data.data, 'base64').toString())
   var d = new Date()
+  console.log(d.getHours(), ':', d.getMinutes())
   if (d.getMinutes() < 10 && d.getHours() > 7 && d.getHours() < 23) {
+    console.log('texting')
     sendAvgTempMessage((parseInt(data.avgTemp)*9/5 + 32).toFixed(2))
   }
 
