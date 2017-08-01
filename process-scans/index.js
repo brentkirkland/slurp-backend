@@ -46,7 +46,7 @@ exports.processScans = function processMeasures(event, callback) {
 
   var data = JSON.parse(Buffer.from(event.data.data, 'base64').toString())
   var d = new Date()
-  if (data.shouldText && d.getMinutes() < 11 && d.getHours() > 7 && d.getHours() < 23) {
+  if (d.getMinutes() < 10 && d.getHours() > 7 && d.getHours() < 23) {
     sendAvgTempMessage((parseInt(data.avgTemp)*9/5 + 32).toFixed(2))
   }
 
