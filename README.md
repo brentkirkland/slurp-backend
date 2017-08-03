@@ -1,3 +1,5 @@
 # slurp-backend
-# slurp-backend
-# slurp-backend
+
+Work in progress.
+
+This repo contains all Google Cloud related functions.
