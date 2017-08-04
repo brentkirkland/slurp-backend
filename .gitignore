@@ -36,6 +36,9 @@ build/Release
 node_modules/
 post-measures/node_modules/
 pub-endpoint/node_modules/
+post-measures/node_modules/
+process-measures/node_modules/
+process-scans/node_modules/
 jspm_packages/
 
 # Typescript v1 declaration files
@@ -61,3 +64,4 @@ typings/
 
 # customer secrets
 process-measures/ignores.js
+process-scans/ignores.js

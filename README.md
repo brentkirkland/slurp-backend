@@ -1,5 +1,7 @@
 # Soilwatch Backend
 
+This repo contains all Google Cloud related functions.
+
 This repo is weirdly a bunch of repos. These are all Google Cloud Functions. They are awesome little npm packages that are quick to deploy.
 
 ## get-devices
@@ -22,3 +24,5 @@ This endpoint puts each message into PubSub. The reason I went with PubSub inste
 * oAuth. Make every request secure, safe, and user specifc.
 * Better error handling
 * Implement worker for better data processing.
+=======
+# slurp-backend
