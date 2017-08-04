@@ -14,7 +14,11 @@ This is just a quick endpoint to get a rooms data.
 
 ## process-measures
 
-This is a PubSub trigger that then texts me about average room temperature and then writes the data to Datastore.
+This is a PubSub trigger that then texts me about average room temperature and then writes the data to Datastore. This is being faced out as the BLE device that triggered this is terrible.
+
+## process-scans
+
+This is a PubSub trigger that then texts me about average room temperature and then writes the data to Datastore. This process is used with the new BLE device.
 
 ## pub-endpoint
 
@@ -24,5 +28,3 @@ This endpoint puts each message into PubSub. The reason I went with PubSub inste
 * oAuth. Make every request secure, safe, and user specifc.
 * Better error handling
 * Implement worker for better data processing.
-=======
-# slurp-backend
